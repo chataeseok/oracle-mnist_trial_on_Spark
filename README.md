@@ -14,8 +14,12 @@ A dataset of oracle characters for benchmarking machine learning algorithms. Mei
 ## Usage:
 ```bash
 spark-submit training.py \
---master <user's Spark standalone url> \
-...(custom source assignment)
+# custom source assignment, for example,
+--master <your Spark standalone url> \
+--total-executor-cores 4 \
+--executor-cores 1 \
+--executor-memory 2G \
+--driver-memory 4G \
 ```
 
 I would like to express my sincere gratitude to the original authors.

@@ -9,8 +9,12 @@ DATA SOURCE
 USAGE
 用法:
             spark-submit training.py \
-            --master <user's Spark standalone url ユーザのSpark standalone url> \
-            ...(custom source assignment カスタムリソース割り当て)
+            # custom source assignment, for example, カスタムリソース割り当て,たとえば、
+            --master <your Spark standalone url あなたのSpark standalone url> \
+            --total-executor-cores 4 \
+            --executor-cores 1 \
+            --executor-memory 2G \
+            --driver-memory 4G \
 
 COMPILED BY
 コンパイラ:
