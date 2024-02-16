@@ -8,7 +8,7 @@ DATA SOURCE
 
 USAGE
 用法:
-            spark-submit training.py \
+            spark-submit CNN.py \
             # custom source assignment, for example, カスタムリソース割り当て,たとえば、
             --master <your Spark standalone url あなたのSpark standalone url> \
             --total-executor-cores 4 \
@@ -27,8 +27,6 @@ REFERRED TO
             Andrew Gu's https://github.com/pytorch/examples/blob/1aa2eec9ac94102ac479cd88396b8aa3f2429092/distributed/ddp/example.py
 """
 
-import sys
-sys.path.append('./')
 import torch
 import torch.nn as nn
 from torchvision import transforms
