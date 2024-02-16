@@ -35,8 +35,6 @@ from typing_extensions import Literal
 from pyspark.ml.torch.distributor import TorchDistributor
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName('Oracle_mnist').getOrCreate()
-
 """
 Parameters pre-setting
 事前のパラメータ設定
@@ -217,11 +215,14 @@ def train(epochs_n: int = 100, learning_rate: float = 0.01, scheduler_step: int 
 distributed execution
 分散計算の実行
 """
-distributor = TorchDistributor(num_processes = 2, #number of processes
-                            local_mode = False, #Using local mode or computing clusters
-                            use_gpu = False)
-print('-'*20 + 'start training' + '-'*20)
-distributor.run(train, epochs_n, learning_rate, scheduler_step, gamma)#Users can adjust the training parameters according to the situation
-print('-'*20 + 'training done' + '-'*20)
+if __name__ == '__name__':
+    spark = SparkSession.builder.appName('Oracle_mnist').getOrCreate()
 
-spark.stop()
+    distributor = TorchDistributor(num_processes = 2, #number of processes
+                                local_mode = False, #Using local mode or computing clusters
+                                use_gpu = False)
+    print('-'*20 + 'start training' + '-'*20)
+    distributor.run(train, epochs_n, learning_rate, scheduler_step, gamma)#Users can tune the training parameters according to the situation
+    print('-'*20 + 'training done' + '-'*20)
+
+    spark.stop()
