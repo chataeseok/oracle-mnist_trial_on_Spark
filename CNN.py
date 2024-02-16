@@ -160,7 +160,7 @@ trainset = loaddata(img_trans = norm_trans)
 
 def train(epochs_n: int = 100, learning_rate: float = 0.01, scheduler_step: int = 10, gamma: float = 0.95):
     """
-    distributed training
+    Distributed training
     分散トレーニング
     """
     import torch
@@ -171,7 +171,7 @@ def train(epochs_n: int = 100, learning_rate: float = 0.01, scheduler_step: int 
     import torch.distributed as dist
     from torch.nn.parallel import DistributedDataParallel as DDP
 
-    cost_log, acc_log = torch.tensor([]), torch.tensor([])#cost history and accuracy history during initialization training
+    cost_log, acc_log = torch.tensor([]), torch.tensor([])#cost history and accuracy history during initializing training
 
     dist.init_process_group('gloo')#distributed environment initialization
 
