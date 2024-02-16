@@ -34,7 +34,8 @@ spark-submit CGAN.py \
 ```
 
 ## test_after_training_CGAN.ipynb usage:
-After training the network, run cells in notebook.
+After training the network, run cells in notebook. The following case figure:
+<img src='./generated_images.png' width='60%'>
 
 ##
 I would like to express my sincere gratitude to the original authors.
