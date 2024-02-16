@@ -46,8 +46,10 @@ epochs_n = 100#number of training epochs
 scheduler_step = 10#period of learning rate decay
 gamma = 0.95#multiplicative factor of learning rate decay
 
-'''Network
-ニューラルネットワーク'''
+"""
+Network
+ニューラルネットワーク
+"""
 class LeNet_5(nn.Module):
     """
     Modification of LeNet-5
