@@ -36,4 +36,5 @@ spark-submit CGAN.py \
 ## test_after_training_CGAN.ipynb usage:
 After training the network, run cells in notebook.
 
+##
 I would like to express my sincere gratitude to the original authors.
