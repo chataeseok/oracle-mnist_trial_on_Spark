@@ -34,7 +34,8 @@ spark-submit CGAN.py \
 ```
 
 ## test_after_training_CGAN.ipynb の用法:
-ノート内のセルを実行する。
+ノート内のセルを実行する。以下に事例図を示す:
+<img src='./generated_images.png' width='60%'>
 
 ##
 ここに原作者への心からの感謝を申し上げます。
