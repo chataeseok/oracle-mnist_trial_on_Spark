@@ -143,7 +143,7 @@ class G(nn.Module):
         フォワード伝播
         """
         output = self.activation(self.linear(input))#[batch_size, 256]
-        output = output.reshape(-1, 16, 4, 4)#[batch_size, 16, 4, 4]其中256=16X4X4
+        output = output.reshape(-1, 16, 4, 4)#[batch_size, 16, 4, 4]256=16X4X4
         output = self.activation(self.norm1(self.t_conv1(output)))#[batch_size, 6, 8, 8]
         output = self.activation(self.norm2(self.t_conv2(output)))#[batch_size, 1, 28, 28]
         output = self.tanh(output)#[batch_size, 1, 28, 28]
