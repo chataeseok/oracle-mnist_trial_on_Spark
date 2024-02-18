@@ -258,7 +258,7 @@ class GAN_training_dominator():
             self.d_cost_log, self.g_cost_log = torch.cat([self.d_cost_log, d_train_cost.reshape(-1)]), torch.cat([self.g_cost_log, g_train_cost.reshape(-1)])
 
             if epoch % shown_stride == 0 or epoch == 1:
-                print(f'Epoch {epoch}, training cost of discriminator:{d_train_cost.item():.4f}, training cost of Generator:{g_train_cost.item():.4f}')
+                print(f'Epoch {epoch}, training cost of discriminator:{d_train_cost.item():.4f}, training cost of generator:{g_train_cost.item():.4f}')
 
 """
 Functions for loading datasets
