@@ -107,21 +107,21 @@ class LeNet_5(nn.Module):
                 nn.init.normal_(layer.weight, std = 0.01)
                 nn.init.normal_(layer.bias, std = 0.01)
 
-    def loadparam(self, path: str):
+    def load_params(self, path: str):
         """
         Load pre-saved model parameters
         ロード前に保存したモデルパラメータ
         """
         self.load_state_dict(torch.load(path, map_location = torch.device('cpu')))
 
-    def savemodel(self, path: str = './network.pth'):
+    def save_models(self, path: str = './network.pth'):
         """
         Save the trained model
         訓練されたモデルを保存する
         """
         torch.save(self.state_dict(), path)
 
-    def showparam(self):
+    def show_params(self):
         """
         Show model parameters
         モデルパラメータの表示
@@ -132,7 +132,7 @@ class LeNet_5(nn.Module):
 Functions for loading datasets
 データセットをロードする関数
 """
-def loaddata(img_trans, type: Literal['train', 't10k'] = 'train'):
+def load_data(img_trans, type: Literal['train', 't10k'] = 'train'):
     """
     Import Oracle-mnist dataset from binary buffer
     バイナリ・バッファからOracle-mnistデータセットをインポートするには
@@ -150,13 +150,13 @@ def loaddata(img_trans, type: Literal['train', 't10k'] = 'train'):
 Import data and preprocess data
 データのインポートと前処理データ
 """
-# ori_trainset = loaddata(img_trans = transforms.Compose([transforms.ToPILImage(), transforms.ToTensor()))
+# ori_trainset = load_data(img_trans = transforms.Compose([transforms.ToPILImage(), transforms.ToTensor()))
 # train_std1, train_mean1 = torch.std_mean(torch.stack([img for img, _ in ori_trainset]))#the standard deviation and mean of channel pixels in the original images
 # print(f'std:{train_std1:.4f},mean:{train_mean1:.4f}')#0.3713, 0.3814
 
 norm_trans = transforms.Compose([transforms.ToPILImage(), transforms.ToTensor(), transforms.Normalize((0.3814,), (0.3713,))])#standardize images
 
-trainset = loaddata(img_trans = norm_trans)
+trainset = load_data(img_trans = norm_trans)
 
 def train(epochs_n: int = 100, learning_rate: float = 0.01, scheduler_step: int = 10, gamma: float = 0.95):
     """
@@ -209,7 +209,7 @@ def train(epochs_n: int = 100, learning_rate: float = 0.01, scheduler_step: int 
             print(f'Epoch {epoch}, training cost:{cost.item():.4f}, training accuracy:{acc.compute().item():.2%}')
 
     dist.destroy_process_group()#cleaning up distributed environments
-    model.module.savemodel()#saving network weights parameters and it should be the default options to save the main process(rank=0)
+    model.module.save_models()#saving network weights parameters and it should be the default options to save the main process(rank=0)
     torch.save(acc_log, './acc_log.pth')
     torch.save(cost_log, './cost_log.pth')
 

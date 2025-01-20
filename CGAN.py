@@ -97,21 +97,21 @@ class D(nn.Module):
                 nn.init.normal_(layer.weight, std = 0.01)
                 nn.init.normal_(layer.bias, std = 0.01)
 
-    def loadparam(self, path: str):
+    def load_params(self, path: str):
         """
         Load pre-saved model parameters
         ロード前に保存したモデルパラメータ
         """
         self.load_state_dict(torch.load(path, map_location = torch.device('cpu')))
 
-    def savemodel(self, path: str = './Discriminator.pth'):
+    def save_model(self, path: str = './Discriminator.pth'):
         """
         Save the trained model
         訓練されたモデルを保存する
         """
         torch.save(self.state_dict(), path)
 
-    def showparam(self):
+    def show_params(self):
         """
         Show model parameters
         モデルパラメータの表示
@@ -167,21 +167,21 @@ class G(nn.Module):
                 nn.init.normal_(layer.weight, std = 0.01)
                 nn.init.normal_(layer.bias, std = 0.01)
 
-    def loadparam(self, path: str):
+    def load_params(self, path: str):
         """
         Load pre-saved model parameters
         ロード前に保存したモデルパラメータ
         """
         self.load_state_dict(torch.load(path, map_location = torch.device('cpu')))
 
-    def savemodel(self, path: str = './Generator.pth'):
+    def save_model(self, path: str = './Generator.pth'):
         """
         Save the trained model
         訓練されたモデルを保存する
         """
         torch.save(self.state_dict(), path)
 
-    def showparam(self):
+    def show_params(self):
         """
         Show model parameters
         モデルパラメータの表示
@@ -314,8 +314,8 @@ def train(epochs_n: int = 100, g_learning_rate: float = 0.0001, d_learning_rate:
     dominator.train(g_optimizer = g_optimizer, d_optimizer = d_optimizer, epochs_n = epochs_n, shown_stride = shown_stride)
 
     dist.destroy_process_group()#cleaning up distributed environments
-    disc.module.savemodel()#saving network weights parameters and it should be the default options to save the main process(rank=0)
-    gen.module.savemodel()#saving network weights parameters and it should be the default options to save the main process(rank=0)
+    disc.module.save_model()#saving network weights parameters and it should be the default options to save the main process(rank=0)
+    gen.module.save_model()#saving network weights parameters and it should be the default options to save the main process(rank=0)
     torch.save(dominator.d_cost_log, './Discriminator_log.pth')
     torch.save(dominator.g_cost_log, './Generator_log.pth')
 
